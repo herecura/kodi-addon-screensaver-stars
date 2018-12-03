@@ -1,21 +1,22 @@
-# $Id$
 # Maintainer: BlackEagle <ike.devolder@gmail.com>>
 
 pkgname=kodi-addon-screensaver-stars
 epoch=1
-pkgver=1.1.0
+pkgver=2.1.0
+_codename=Leia
 pkgrel=1
 pkgdesc="Starfield screensaver for Kodi"
 arch=('x86_64')
-url='github.com/notspiff/screensaver.stars'
+url='https://github.com/xbmc/screensaver.stars'
 license=('GPL')
 groups=('kodi-addons' 'kodi-addons-screensaver')
 depends=('kodi')
 makedepends=('git' 'cmake' 'kodi-dev')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/notspiff/screensaver.stars/archive/v$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/xbmc/screensaver.stars/archive/$pkgver-$_codename.tar.gz")
+sha512sums=('7bc9ffb8b186c07fa7c4166fc7876a5733e6a0d5feb7942794d3db78a98c6e8a03283b086c02bc6ec27ce8a246e39b36fb188815b219a8a016f80d3f2543548a')
 
 build() {
-    cd "screensaver.stars-$pkgver"
+    cd "screensaver.stars-$pkgver-$_codename"
 	cmake \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -25,8 +26,7 @@ build() {
 }
 
 package() {
-    cd "screensaver.stars-$pkgver"
+    cd "screensaver.stars-$pkgver-$_codename"
 	make DESTDIR="$pkgdir/" install
 }
 
-sha512sums=('8eae14c604c6687d8703d5fe0c20b98a741f11944b8a0b7931a2bcfd84b0b60da91bfdb089b1eaa50a844dd6e25844d4725b2959ef439a93d1e2660a5cab332d')
