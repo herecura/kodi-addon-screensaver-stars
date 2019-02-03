@@ -4,7 +4,7 @@ pkgname=kodi-addon-screensaver-stars
 epoch=1
 pkgver=2.1.1
 _codename=Leia
-pkgrel=2
+pkgrel=3
 pkgdesc="Starfield screensaver for Kodi"
 arch=('x86_64')
 url='https://github.com/xbmc/screensaver.stars'
@@ -17,16 +17,17 @@ sha512sums=('f09195c4f471389d8fad009bbb8b38f2a58dd25f2818278b14b2903b0fe118f0db6
 
 build() {
     cd "screensaver.stars-$pkgver-$_codename"
-	cmake \
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DBUILD_SHARED_LIBS=1 \
-		-DUSE_LTO=1
-	make
+    cmake \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_SHARED_LIBS=1 \
+        -DUSE_LTO=1 \
+        .
+    make
 }
 
 package() {
     cd "screensaver.stars-$pkgver-$_codename"
-	make DESTDIR="$pkgdir/" install
+    make DESTDIR="$pkgdir/" install
 }
 
